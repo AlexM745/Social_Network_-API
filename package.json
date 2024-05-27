@@ -1,0 +1,26 @@
+{
+  "name": "social_network_-api",
+  "version": "1.0.0",
+  "description": "application where users share their thoughts react to others and createa a firends list. This application uses react and mongodb",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexM745/Social_Network_API.git"
+  },
+  "keywords": [
+    "Node.js",
+    "Express.js",
+    "MongoDB",
+    "Javascript",
+    "Insomia"
+  ],
+  "author": "Alexis Merino",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AlexM745/Social_Network_API/issues"
+  },
+  "homepage": "https://github.com/AlexM745/Social_Network_API#readme"
+}
