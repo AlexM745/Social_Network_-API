@@ -22,5 +22,9 @@
   "bugs": {
     "url": "https://github.com/AlexM745/Social_Network_API/issues"
   },
-  "homepage": "https://github.com/AlexM745/Social_Network_API#readme"
+  "homepage": "https://github.com/AlexM745/Social_Network_API#readme",
+  "dependencies": {
+    "express.js": "^1.0.0",
+    "mongoose": "^8.4.0"
+  }
 }
