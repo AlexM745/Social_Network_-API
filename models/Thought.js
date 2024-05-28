@@ -1,5 +1,5 @@
 // inports the dependecies of schema and model from mongoose
-const {Schema, model} = require("mongoose");
+const { Schema, model } = require("mongoose");
 //imports the reaction schema
 const reactionSchema = require("./Reaction");
 
@@ -7,25 +7,40 @@ const reactionSchema = require("./Reaction");
 const thoughtSchema = new Schema(
     {
         // thought text 
-        thoughtText:{
-            type: String, 
-            required: true, 
-            minlength: 1, 
-            maxlength:280, 
+        thoughtText: {
+            type: String,
+            required: true,
+            minlength: 1,
+            maxlength: 280,
         },
         // the create at parameter that uses date to show the date of the whent thoughts are created
-        createAt:{
+        createAt: {
             type: Date,
             // uses the date of today
-            default: Date.now, 
+            default: Date.now,
             // timestamp is the current date and is turned inot a string
-            get:timestamp => new Date(timestamp).toLocaleString(), 
-        }, 
-        username:{
-            type: String, 
-            required: true, 
-        }, 
+            get: timestamp => new Date(timestamp).toLocaleString(),
+        },
+        username: {
+            type: String,
+            required: true,
+        },
         // uses the reaction schema
-        reactions:[reactionSchema], 
-} 
-)
+        reactions: [reactionSchema],
+    },
+    {
+        toJSON: {
+            virtuals:true, 
+        },
+        id:false, 
+    }
+);
+// setting up the viruals  with reaction count that returns the amount of reactions a thought has
+    thoughtSchema.virtual("reactionCount").get(function(){
+        return this.reactions.length// the length of all the reactions that a thought has
+    });
+// created the Thought model through the thoughtSchema
+const Thought = model ("Thought", thoughtSchema)
+
+// exports the thought model
+module.exports = Thought;
