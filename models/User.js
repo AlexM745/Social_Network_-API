@@ -20,19 +20,35 @@ const userSchema = new Schema(
             match: [/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/, "Wrong Email, please add valid email"]
         },
 
-        // the thoughts as objects and references thought
+        // the thoughts array has object id type and references thought
         thoughts: [
             {
                 type: Schema.Types.ObjectId,
                 ref: "Thought"
             }
         ],
-        // // friends as objects and references user
+        // // friends arrya has object id type and references user
         friends: [
             {
                 type: Schema.Types.ObjectId,
                 ref: "User"
             }
         ],
+    }, 
+    // transforms to json virutals are visible
+    { toJSON: {
+        virtuals: true, // enables virtuals to been seen when user document is transformed to JSON. 
+    },
+    id :false, // disables the default _id:
+
     }
 );
+// virtual property friendCount which reutrns number of friends user has in the friends array
+userSchema.virtual("friendCount").get(function(){
+    return this.friends.length; // the length of the friends array
+});
+// creates the User model from the userSchema
+const User = model("User", userSchema);
+
+// exports the User model
+module.exports = User
