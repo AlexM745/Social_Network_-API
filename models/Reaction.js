@@ -29,10 +29,15 @@ const reactionSchema = new Schema(
             default: Date.now, 
             get: timestamp => new Date(timestamp).toLocaleDateString()
         },   
-
+    }, 
+    {
+        // runs the getters when the reaction is turned into Json
+        toJSON: {
+            getters: true, 
+        }, 
+        id:false, 
     }
-)
-
+);
 
 
 //exports the reaction schema
