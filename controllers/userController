@@ -1,0 +1,10 @@
+// importing the User model
+const {User} = require("../models");
+
+const UserController = {
+
+};
+
+
+// exporting the user controller
+module.exports = UserController;
