@@ -1,5 +1,5 @@
 //importing the thought, user, and reaction models
-const { Thought, User, Reaction } = require("../models");
+const { Thought, Reaction } = require("../models");
 // importing dependecy from mongoose library
 const { Types } = require("mongoose");
 
