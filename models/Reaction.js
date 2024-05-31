@@ -1,7 +1,5 @@
-const { schema } = require("./User");
-
 // importing the dependecies schema and types from mongoose library
-const {Schema, Types} = reuqire("mongoose");
+const {Schema, Types} = require("mongoose");
 
 // creating the reaction schema
 const reactionSchema = new Schema(
