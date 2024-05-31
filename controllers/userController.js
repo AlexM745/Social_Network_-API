@@ -35,30 +35,36 @@ const UserController = {
     },
 
     //update user by id
-    async updateUser(req, res) {
-        try {
-            const userData = await User.findOneAndUpdate(req.params.id);
-            if (!userData) {
-                res.status(404).json({ message: "No user found with this id!" });
-            }
-            res.status(200).json(userData);
-        } catch (err) {
-            res.status(500).json(err);
-        }
-    },
+     async updateCourse(req, res) {
+    try {
+      const course = await Course.findOneAndUpdate(
+        { _id: req.params.courseId },
+        { $aset: req.body },
+        { runValidators: true, new: true }
+      );
+
+      if (!course) {
+        res.status(404).json({ message: 'No course with this id!' });
+      }
+
+      res.json(course);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
 
     //delete user by id
     async deleteUser(req, res) {
         try {
-            const userData = await User.findOneAndDelete(req.params.id);
-            if (!userData) {
-                res.status(404).json({ message: "No user found with this id!" });
-            }
-            res.status(200).json(userData);
+          const userData = await Course.findOneAndDelete({ _id: req.params.courseId });
+    
+          if (!userData) {
+            res.status(404).json({ message: 'No user found with this id!' });
+          }
         } catch (err) {
-            res.status(500).json(err);
+          res.status(500).json(err);
         }
-    },
+      },
 
 
     //add friend to user

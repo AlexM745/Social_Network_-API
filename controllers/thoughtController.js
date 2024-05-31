@@ -5,7 +5,7 @@ const { Types } = require("mongoose");
 
 // the thought controller object that has all the handlers for the api calls
 const ThoughtController = {
-    // get all thoughts
+    // get all thoughts handler
     async getThoughts(req, res) {
         try {
             const thoughtData = await Thought.find();
@@ -14,7 +14,7 @@ const ThoughtController = {
             res.status(500).json(err);
         }
     },
-    // get one thought by id
+    // get one thought by id handler
     async getThought(req, res) {
         try {
             const thoughtData = await Thought.findOne({ _id: req.params.courseId });
@@ -28,7 +28,7 @@ const ThoughtController = {
         }
     },
 
-    // create thought
+    // create thought handler
     async createThought(req, res) {
         try {
             const thoughtData = await Thought.create(req.body);
@@ -37,4 +37,47 @@ const ThoughtController = {
             res.status(500).json(err);
         }
     },
+
+    //delete thought by id handler
+    async deleteThought(req, res) {
+        try {
+            const thoughtData = await Thought.findOneAndDelete({_id:req.params.thoughtId});
+            res.status(200).json(thoughtData);
+        } catch (err) {
+            res.status(500).json(err);
+        }
+    },
+// update thought handler
+    async updateThought(req, res) {
+        try {
+          const thoughtData = await Thought.findOneAndUpdate(
+            { _id: req.params.thoughtId },
+            { $set: req.body },
+            { runValidators: true, new: true }
+          );
+    
+          if (!thoughtData) {
+            res.status(404).json({ message: 'No thought found with this id!' });
+          }
+    
+          res.json(thoughtData);
+        } catch (err) {
+          res.status(500).json(err);
+        }
+      },
+
+      // create reaction handler 
+      async createReaction(req, res) {
+        try {
+            const thoughtData = await Thought.findOneAndUpdate( 
+                { _id: req.params.thoughtId },
+                { $addToSet: {reactions: req.body}},
+                { runValidators: true, new: true });
+            res.status(200).json(thoughtData);
+        } catch (err) {
+            res.status(500).json(err);
+        }
+    },
+    
+
 }
