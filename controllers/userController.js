@@ -1,6 +1,7 @@
 // importing the User model
 const { User } = require("../models");
 
+// the user controller object that has various handlers for api calls
 const UserController = {
 
     // get all users
@@ -77,7 +78,6 @@ const UserController = {
             res.status(500).json(err);
         }
     },
-
 
 
 };
