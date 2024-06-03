@@ -50,14 +50,6 @@ userSchema.virtual("friendCount").get(function(){
 // creates the User model from the userSchema
 const User = model("User", userSchema);
 
-const userData = [
-    {username:"user1", email:"user1@email.com", thoughts:"", friends:""},
-    {username:"user2", email:"user2@email.com", thoughts:"", friends:""},
-    {username:"user3", email:"user3@email.com", thoughts:"", friends:""},
-    {username:"user4", email:"user4@email.com", thoughts:"", friends:""}
-]
-
-
 
 // exports the User model
 module.exports = User
