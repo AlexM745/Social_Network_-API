@@ -34,21 +34,24 @@ const userSchema = new Schema(
                 ref: "User"
             }
         ],
-    }, 
-    // transforms to json virutals are visible
-    { toJSON: {
-        virtuals: true, // enables virtuals to been seen when user document is transformed to JSON. 
     },
-    id :false, // disables the default _id:
+    // transforms to json virtuals are visible
+    {
+        toJSON: {
+            virtuals: true, // enables virtuals to been seen when user document is transformed to JSON. 
+        },
+        id: false, // disables the default _id:
 
     }
 );
 // virtual property friendCount which reutrns number of friends user has in the friends array
-userSchema.virtual("friendCount").get(function(){
+userSchema.virtual("friendCount").get(function () {
     return this.friends.length; // the length of the friends array
 });
 // creates the User model from the userSchema
 const User = model("User", userSchema);
+
+
 
 
 // exports the User model

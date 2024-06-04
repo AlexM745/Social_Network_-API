@@ -15,7 +15,7 @@ const{
 // Get and Post  users
 router.route("/").get(getUsers).post(createUser);
 
-// api/users/:userId
+// api/user/:userId
 router.route("/:userId").get(getUser).put(updateUser).delete(deleteUser);
 
 // POST to add friend
