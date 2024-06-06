@@ -51,7 +51,44 @@ userSchema.virtual("friendCount").get(function () {
 // creates the User model from the userSchema
 const User = model("User", userSchema);
 
-
+User.find({})
+    .exec()
+    .then(async collection => {
+        if (collection.length === 0) {
+            try {
+                const insertedUsers = await Item
+                    .insertMany([
+                        {
+                            "username": "user1",
+                            "email": "user1@email.com",
+                            "thoughts": [],
+                            "friends": []
+                        },
+                        {
+                            "username": "user2",
+                            "email": "user2@email.com",
+                            "thoughts": [],
+                            "friends": []
+                        },
+                        {
+                            "username": "user3",
+                            "email": "user3@email.com",
+                            "thoughts": [],
+                            "friends": []
+                        },
+                        {
+                            "username": "user4",
+                            "email": "user4@email.com",
+                            "thoughts": [],
+                            "friends": []
+                        }
+                    ]);
+                console.log('Inserted users:', insertedUsers);
+            } catch (err) {
+                console.log(err);
+            }
+        }
+    });
 
 
 // exports the User model
