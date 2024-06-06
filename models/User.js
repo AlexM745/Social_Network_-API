@@ -1,5 +1,6 @@
 //importing required dependencies schema and model from mongoose
 const { Schema, model } = require("mongoose");
+const Thought = require("./Thought");
 
 //Schema to create a user model with required fields
 
