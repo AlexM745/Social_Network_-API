@@ -51,6 +51,7 @@ userSchema.virtual("friendCount").get(function () {
 // creates the User model from the userSchema
 const User = model("User", userSchema);
 
+//seeds the users
 User.find({})
     .exec()
     .then(async collection => {
