@@ -1,5 +1,5 @@
 // importing the User model
-const { User } = require("../models");
+const { User, Thought } = require("../models");
 
 // the user controller object that has various handlers for api calls
 const UserController = {
@@ -61,7 +61,12 @@ const UserController = {
       if (!user) {
         res.status(404).json({ message: 'No user found with this id!' });
       }
+        // deletes the thoughts assoiated with user
+      await Thought.deleteMany({ _id: { $in: user.thoughts } });
+        res.json({ message: 'User and associated thoughts deleted!' });
+
     } catch (err) {
+      console.log(err);
       res.status(500).json(err);
     }
   },
