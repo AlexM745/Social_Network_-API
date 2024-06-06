@@ -57,7 +57,7 @@ User.find({})
     .then(async collection => {
         if (collection.length === 0) {
             try {
-                const insertedUsers = await Item
+                const insertedUsers = await User
                     .insertMany([
                         {
                             "username": "user1",
