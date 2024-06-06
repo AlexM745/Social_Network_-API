@@ -56,7 +56,7 @@ const UserController = {
   //delete user by id
   async deleteUser(req, res) {
     try {
-      const user = await Course.findOneAndDelete({ _id: req.params.courseId });
+      const user = await Course.findOneAndDelete({ _id: req.params.userId});
 
       if (!user) {
         res.status(404).json({ message: 'No user found with this id!' });

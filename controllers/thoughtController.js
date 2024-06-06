@@ -54,7 +54,6 @@ const ThoughtController = {
     async deleteThought(req, res) {
         try {
             const thought = await Thought.findOneAndDelete({ _id: req.params.thoughtId });
-            res.status(200).json(thought);
             // checking that there is no thought with id
             if (!thought) {
                 return res.status(404).json({ message: 'No thought with that ID' });
@@ -63,6 +62,7 @@ const ThoughtController = {
 
         } catch (err) {
             res.status(500).json(err);
+
         }
     },
     // update thought handler
