@@ -79,7 +79,7 @@ const UserController = {
         { _id: req.params.userId },
         // aggregating to the db to add a friend 
         { $addToSet: { friends: req.body.friendId || req.params.friendId } },
-        { new: true }
+        
       );
       if (!user) {
         res.status(404).json({ message: "No user found with this id!" });
@@ -94,15 +94,19 @@ const UserController = {
   //delete friend of user
   async deleteFriend(req, res) {
     try {
-        const user = await User.findOneAndupdate(
-            { _id: req.params.userId },
-            { $pull: { friends: { friends: req.params.friendId } } },
-            { runValidators: true, new: true });
-        user ? res.json(user) : res.status(404).json({ message: "No user with this ID" });
+      const user = await User.updateOne(
+        { _id:req.params.userId}, { $pull: { friends: req.params.friendId }}
+      );
+
+      if (!user) {
+        res.status(404).json({ message: "No user found with this id!" });
+      }
+      res.json({message: "deleted friend"});
+
     } catch (err) {
-        res.status(500).json(err);
+      res.status(500).json(err);
     }
-},
+  }
 
 };
 

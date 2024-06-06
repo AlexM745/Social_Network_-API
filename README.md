@@ -23,7 +23,7 @@ Built with:
  
 ## Demonstration
 
-The full video showing functionality can be found [here]()
+The full video showing functionality can be found [here](https://youtu.be/ZOf5wmgZpyw)
 
 ## Table of Contents
 - [User Story](#user-story)
